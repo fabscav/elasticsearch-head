@@ -2032,6 +2032,16 @@
 				]};
 			}, this)};
 		},
+		_footerRow_template: function(columns) {
+			return { tag: "TR", cls: "uiTable-footer-row", children: columns.map(function(column) {
+				var dir = ((this.config.store.sort.column === column) && this.config.store.sort.dir) || "none";
+				return { tag: "TH", data: { column: column, dir: dir }, cls: "uiTable-footer-cell" + ((dir !== "none") ? " uiTable-sort" : ""), children: [
+					{ tag: "DIV", children: [
+						{ tag: "DIV", cls: "uiTable-footercell-text", text: column }
+					]}
+				]};
+			}, this)};
+		},
 		_headerEndCap_template: function() {
 			return { tag: "TH", cls: "uiTable-headerEndCap", children: [ { tag: "DIV" } ] };
 		},
@@ -2043,6 +2053,7 @@
 						return { tag: "TD", cls: "uiTable-cell", children: [ { tag: "DIV", text: (row[column] || "").toString() } ] };
 					})};
 				}))
+				.concat(this._footerRow_template(columns))
 			};
 		}
 
@@ -2364,7 +2375,7 @@
 				var height = parent.height() || ( $(document).height() - parent.offset().top - 41 ); // 41 = height in px of .uiTable-tools + uiTable-header
 				var width = parent.width();
 				this.el.width( width );
-				this.body.width( width ).height( height );
+				this.body.width( width );//.height( height );
 			}
 			this._super(parent);
 		},
@@ -2632,6 +2643,7 @@
 			] };
 		},
 		_filters_template: function() {
+                    console.log(this.metadata.fields, 'fields');
 			var fields = Object.keys( this.metadata.fields ).sort();
 			return { tag: "DIV", cls: "uiQueryFilter-section uiQueryFilter-filters", children: [
 				{ tag: "HEADER", text: i18n.text("QueryFilter-Header-Fields") },
@@ -2714,6 +2726,12 @@
 					this.query.query();
 				}.bind(this)
 			});
+			this._columnsButton = new ui.Button({
+				label: i18n.text("General.SelectColumns"),
+				onclick: function( btn ) {
+					//this.query.query();
+				}.bind(this)
+			});
 			this.el = $(this._main_template());
 			new data.MetaDataFactory({
 				cluster: this.cluster,
@@ -2727,7 +2745,6 @@
 						store: this.store
 					} );
 					this.resultTable.attach( this.el.find("> .uiBrowser-table") );
-					this.updateResults();
 				}.bind(this)
 			});
 		},
@@ -2744,7 +2761,7 @@
 				new ui.Toolbar({
 					label: i18n.text("Browser.Title"),
 					left: [ ],
-					right: [ this._refreshButton ]
+					right: [ this._columnsButton, this._refreshButton ]
 				}),
 				{ tag: "DIV", cls: "uiBrowser-filter" },
 				{ tag: "DIV", cls: "uiBrowser-table" }
@@ -2786,6 +2803,7 @@
 			this.errEl = this.el.find("DIV.uiAnyRequest-jsonErr");
 			this.typeEl.val("GET");
 			this.attach(parent);
+                        //$('TEXTAREA[name=body]').linedtextarea();
 			this.setHistoryItem(this.history[this.history.length - 1]);
 		},
 		setHistoryItem: function(item) {
@@ -2795,12 +2813,12 @@
 			this.transformEl.val(item.transform);
 		},
 		_request_handler: function( ev ) {
-			if(! this._validateJson_handler()) {
+			if(this.typeEl.val() !== 'GET' && !this._validateJson_handler()) {
 				return;
 			}
 			var path = this.pathEl.val(),
 					type = this.typeEl.val(),
-					query = JSON.stringify(JSON.parse(this.dataEl.val())),
+					query = type === 'GET' ? '' : JSON.stringify(JSON.parse(this.dataEl.val())),
 					transform = this.transformEl.val(),
 					base_uri = this.base_uriEl.val();
 			if( ev ) { // if the user click request

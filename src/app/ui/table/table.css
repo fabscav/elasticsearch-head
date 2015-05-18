@@ -35,7 +35,7 @@
 	height: 14px;
 }
 
-.uiTable-header-row {
+.uiTable-header-row, .uiTable-footer-row {
 	background: #ddd;
 	background: -moz-linear-gradient(top, #eee, #ccc);
 	background: -webkit-linear-gradient(top, #eee, #ccc);
@@ -49,7 +49,7 @@
 	display: none;
 }
 
-.uiTable-header-row TH {
+.uiTable-header-row TH, .uiTable-footer-row TH {
 	border-right: 1px solid #bbb;
 	padding: 0;
 	text-align: left;

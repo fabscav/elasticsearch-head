@@ -11,6 +11,7 @@ i18n.setKeys({
 	"General.RefreshQuickly": "Refresh quickly",
 	"General.Refresh5seconds": "Refresh every 5 seconds",
 	"General.Refresh1minute": "Refresh every minute",
+	"General.SelectColumns": "Select Columns",
 	"AliasForm.AliasName": "Alias Name",
 	"AliasForm.NewAliasForIndex": "New Alias for {0}",
 	"AliasForm.DeleteAliasMessage": "type ''{0}'' to delete {1}. There is no undo",

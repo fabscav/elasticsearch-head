@@ -30,6 +30,7 @@
 			this.errEl = this.el.find("DIV.uiAnyRequest-jsonErr");
 			this.typeEl.val("GET");
 			this.attach(parent);
+                        //$('TEXTAREA[name=body]').linedtextarea();
 			this.setHistoryItem(this.history[this.history.length - 1]);
 		},
 		setHistoryItem: function(item) {
@@ -39,12 +40,12 @@
 			this.transformEl.val(item.transform);
 		},
 		_request_handler: function( ev ) {
-			if(! this._validateJson_handler()) {
+			if(this.typeEl.val() !== 'GET' && !this._validateJson_handler()) {
 				return;
 			}
 			var path = this.pathEl.val(),
 					type = this.typeEl.val(),
-					query = JSON.stringify(JSON.parse(this.dataEl.val())),
+					query = type === 'GET' ? '' : JSON.stringify(JSON.parse(this.dataEl.val())),
 					transform = this.transformEl.val(),
 					base_uri = this.base_uriEl.val();
 			if( ev ) { // if the user click request

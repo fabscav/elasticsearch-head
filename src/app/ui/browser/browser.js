@@ -17,6 +17,12 @@
 					this.query.query();
 				}.bind(this)
 			});
+			this._columnsButton = new ui.Button({
+				label: i18n.text("General.SelectColumns"),
+				onclick: function( btn ) {
+					//this.query.query();
+				}.bind(this)
+			});
 			this.el = $(this._main_template());
 			new data.MetaDataFactory({
 				cluster: this.cluster,
@@ -30,7 +36,6 @@
 						store: this.store
 					} );
 					this.resultTable.attach( this.el.find("> .uiBrowser-table") );
-					this.updateResults();
 				}.bind(this)
 			});
 		},
@@ -47,7 +52,7 @@
 				new ui.Toolbar({
 					label: i18n.text("Browser.Title"),
 					left: [ ],
-					right: [ this._refreshButton ]
+					right: [ this._columnsButton, this._refreshButton ]
 				}),
 				{ tag: "DIV", cls: "uiBrowser-filter" },
 				{ tag: "DIV", cls: "uiBrowser-table" }

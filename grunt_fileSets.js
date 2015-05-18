@@ -1,5 +1,6 @@
 exports.vendorJs = [
 	'src/vendor/jquery/jquery.js',
+	'src/vendor/jquery/jquery.linedtextarea.js',
 	'src/vendor/joey/joey.js',
 	'src/vendor/nohtml/jquery-nohtml.js',
 	'src/vendor/graphael/g.raphael.standalone.js',
@@ -7,7 +8,8 @@ exports.vendorJs = [
 ];
 
 exports.vendorCss = [
-	'src/vendor/font-awesome/css/font-awesome.css'
+	'src/vendor/font-awesome/css/font-awesome.css',
+	'src/vendor/jquery/jquery.linedtextarea.css'
 ];
 
 exports.srcJs = [

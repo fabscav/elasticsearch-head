@@ -235,6 +235,7 @@
 			] };
 		},
 		_filters_template: function() {
+                    console.log(this.metadata.fields, 'fields');
 			var fields = Object.keys( this.metadata.fields ).sort();
 			return { tag: "DIV", cls: "uiQueryFilter-section uiQueryFilter-filters", children: [
 				{ tag: "HEADER", text: i18n.text("QueryFilter-Header-Fields") },

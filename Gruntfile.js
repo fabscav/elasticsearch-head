@@ -98,7 +98,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
 
 	// Default task(s).
-	grunt.registerTask('default', ['clean', 'concat', 'copy', 'jasmine']);
+	//grunt.registerTask('default', ['clean', 'concat', 'copy', 'jasmine']);
+	grunt.registerTask('default', ['clean', 'concat', 'copy']);
 	grunt.registerTask('server', ['connect:server']);
 	grunt.registerTask('dev', [ 'default', 'watch' ]);
 

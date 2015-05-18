@@ -83,6 +83,16 @@
 				]};
 			}, this)};
 		},
+		_footerRow_template: function(columns) {
+			return { tag: "TR", cls: "uiTable-footer-row", children: columns.map(function(column) {
+				var dir = ((this.config.store.sort.column === column) && this.config.store.sort.dir) || "none";
+				return { tag: "TH", data: { column: column, dir: dir }, cls: "uiTable-footer-cell" + ((dir !== "none") ? " uiTable-sort" : ""), children: [
+					{ tag: "DIV", children: [
+						{ tag: "DIV", cls: "uiTable-footercell-text", text: column }
+					]}
+				]};
+			}, this)};
+		},
 		_headerEndCap_template: function() {
 			return { tag: "TH", cls: "uiTable-headerEndCap", children: [ { tag: "DIV" } ] };
 		},
@@ -94,6 +104,7 @@
 						return { tag: "TD", cls: "uiTable-cell", children: [ { tag: "DIV", text: (row[column] || "").toString() } ] };
 					})};
 				}))
+				.concat(this._footerRow_template(columns))
 			};
 		}
 
