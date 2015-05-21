@@ -125,6 +125,8 @@ TABLE.table H3 {
 	background: -webkit-linear-gradient(top, #fdfefe, #eaedef);
 	border-bottom: 1px solid #d2d5d7;
 	padding: 3px 10px;
+        position: fixed;
+        width: 99%;
 }
 
 .uiToolbar H2 {
@@ -629,7 +631,10 @@ SPAN.uiJsonPretty-boolean { color: purple; }
 .uiNodesView-replica.state-STARTED { background: #99dd88; }
 .uiNodesView-replica.state-RELOCATING { background: #dc88dd; }
 
-
+.uiClusterOverview-table
+{
+    padding-top: 40px;
+}
 .uiClusterConnect-uri {
 	width: 280px;
 }

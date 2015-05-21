@@ -5,6 +5,8 @@
 	background: -webkit-linear-gradient(top, #fdfefe, #eaedef);
 	border-bottom: 1px solid #d2d5d7;
 	padding: 3px 10px;
+        position: fixed;
+        width: 99%;
 }
 
 .uiToolbar H2 {
