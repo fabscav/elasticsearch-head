@@ -173,6 +173,12 @@
 				this.defaultClause = this.addClause();
 			}
 		},
+                resetClauses: function() {
+			this.refuid = 0;
+			this.refmap = {};
+			this.search.query = { bool: { must: [], must_not: [], should: [] } };
+			this.defaultClause = this.addClause();
+                },
 		addFacet: function(facet) {
 			var facetId = "f-" + this.refuid++;
 			this.search.facets[facetId] = facet;

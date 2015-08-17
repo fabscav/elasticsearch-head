@@ -20,11 +20,7 @@
 		requestUpdate: function(jEv) {
 			if(jEv && jEv.originalEvent) { // we only want to update on real user interaction not generated events
 				this.query.setPage(1);
-                                this.query.resetSort();
 				this.query.query();
-                                this.metadata.refresh(this.metadata.config.state, this.query);
-                                console.log($(this.el).find('.uiQueryFilter-filters'), $(this._filters_template()));
-                                $(this.el).find('.uiQueryFilter-filters').html($(this._filters_template()));
 			}
 		},
 		getSpec: function(fieldName) {
@@ -63,6 +59,12 @@
 					}
 				});
 			}
+			if(jEv && jEv.originalEvent) { // we only want to update on real user interaction not generated events
+                            this.query.resetSort();
+                            this.query.resetClauses();
+                            this.metadata.refresh(this.metadata.config.state, this.query);
+                            $(this.el).find('.uiQueryFilter-filters').replaceWith($(this._filters_template()));
+                        }
 			this.requestUpdate(jEv);
 		},
 		_selectType_handler: function(jEv) {
@@ -85,6 +87,12 @@
 					}
 				}, this);
 			}
+			if(jEv && jEv.originalEvent) { // we only want to update on real user interaction not generated events
+                            this.query.resetSort();
+                            this.query.resetClauses();
+                            this.metadata.refresh(this.metadata.config.state, this.query);
+                            $(this.el).find('.uiQueryFilter-filters').html($(this._filters_template()));
+                        }
 			this.requestUpdate(jEv);
 		},
 		_openFilter_handler: function(section) {
