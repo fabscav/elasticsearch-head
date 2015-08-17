@@ -91,7 +91,7 @@
                             this.query.resetSort();
                             this.query.resetClauses();
                             this.metadata.refresh(this.metadata.config.state, this.query);
-                            $(this.el).find('.uiQueryFilter-filters').html($(this._filters_template()));
+                            $(this.el).find('.uiQueryFilter-filters').replaceWith($(this._filters_template()));
                         }
 			this.requestUpdate(jEv);
 		},
