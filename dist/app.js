@@ -2488,7 +2488,6 @@
                             this.query.resetSort();
                             this.query.resetClauses();
                             this.metadata.refresh(this.metadata.config.state, this.query);
-                            console.log('_selectIndex_handler', this._filters_template(), $(this._filters_template()));
                             $(this.el).find('.uiQueryFilter-filters').replaceWith($(this._filters_template()));
                         }
 			this.requestUpdate(jEv);
@@ -2517,12 +2516,11 @@
                             this.query.resetSort();
                             this.query.resetClauses();
                             this.metadata.refresh(this.metadata.config.state, this.query);
-                            $(this.el).find('.uiQueryFilter-filters').html($(this._filters_template()));
+                            $(this.el).find('.uiQueryFilter-filters').replaceWith($(this._filters_template()));
                         }
 			this.requestUpdate(jEv);
 		},
 		_openFilter_handler: function(section) {
-                    console.log('_openFilter_handler', section);
 			var field_name = section.config.title;
 			if(! section.loaded) {
 				var spec = this.getSpec(field_name);
