@@ -127,6 +127,7 @@ TABLE.table H3 {
 	padding: 3px 10px;
         position: fixed;
         width: 99%;
+        margin-top: -1px;
 }
 
 .uiToolbar H2 {
@@ -293,9 +294,10 @@ TABLE.table H3 {
 	padding-bottom: 0;
 }
 
-.uiTable-body .uiTable-header-cell > DIV {
+.uiTable-body .uiTable-header-cell > DIV, .uiTable-body .uiTable-footer-cell > DIV {
 	height: 0;
 	overflow: hidden;
+        max-width: 250px;
 }
 
 .uiTable-headercell-menu {
@@ -352,6 +354,13 @@ TABLE.table H3 {
 .uiTable TABLE TD {
 	border-right: 1px solid transparent;
 	padding: 3px 4px;
+        max-width: 250px;
+        white-space: nowrap;
+}
+
+.uiTable TABLE TD > DIV {
+        overflow: hidden;
+        text-overflow: ellipsis;
 }
 
 .uiTable-body TABLE TR:nth-child(even) {
@@ -362,7 +371,6 @@ TABLE.table H3 {
 	color: white;
 	background: #6060f1;
 }
-
 DIV.uiJsonPretty-object { font-size: 1.26em; font-family: monospace; }
 UL.uiJsonPretty-object,
 UL.uiJsonPretty-array { margin: 0; padding: 0 0 0 2em; list-style: none; }
@@ -495,12 +503,17 @@ SPAN.uiJsonPretty-boolean { color: purple; }
 	margin: 0;
 	opacity: 0.75;
 }
+.uiIndexOverview-table {
+        padding-top: 34px;
+}
 .uiBrowser-filter {
 	float: left;
+        padding-top: 34px;
 }
 
 .uiBrowser-table {
 	margin-left: 365px;
+        padding-top: 34px;
 }
 
 .uiAnyRequest-request {

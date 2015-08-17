@@ -39,7 +39,7 @@
 				}.bind(this)
 			});
 		},
-		updateResults: function() {
+		updateResults: function() {console.log('updateResults');
 			this.query.query();
 		},
 		_changeSort_handler: function(table, wEv) {

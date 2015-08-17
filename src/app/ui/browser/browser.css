@@ -1,7 +1,9 @@
 .uiBrowser-filter {
 	float: left;
+        padding-top: 34px;
 }
 
 .uiBrowser-table {
 	margin-left: 365px;
+        padding-top: 34px;
 }

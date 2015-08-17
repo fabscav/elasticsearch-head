@@ -133,6 +133,9 @@
 				}
 			}
 		},
+                resetSort: function() {
+                        this.search.sort = [];
+                },
 		setIndex: function(index, add) {
 			if(add) {
 				if(! this.indices.contains(index)) this.indices.push(index);

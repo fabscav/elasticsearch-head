@@ -21,9 +21,10 @@
 	padding-bottom: 0;
 }
 
-.uiTable-body .uiTable-header-cell > DIV {
+.uiTable-body .uiTable-header-cell > DIV, .uiTable-body .uiTable-footer-cell > DIV {
 	height: 0;
 	overflow: hidden;
+        max-width: 250px;
 }
 
 .uiTable-headercell-menu {
@@ -80,6 +81,13 @@
 .uiTable TABLE TD {
 	border-right: 1px solid transparent;
 	padding: 3px 4px;
+        max-width: 250px;
+        white-space: nowrap;
+}
+
+.uiTable TABLE TD > DIV {
+        overflow: hidden;
+        text-overflow: ellipsis;
 }
 
 .uiTable-body TABLE TR:nth-child(even) {

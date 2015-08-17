@@ -92,7 +92,7 @@
 			}, this);
 			return types;
 		},
-		refresh: function(state) {
+		refresh: function(state, query) {
 			// currently metadata expects all like named fields to have the same type, even when from different types and indices
 			var aliases = this.aliases = {};
 			var indices = this.indices = {};
@@ -134,28 +134,36 @@
 				})(properties, []);
 			}
 			for (var index in state.metadata.indices) {
-				indices[index] = {
-					types : [], fields : {}, paths : {}, parents : {}
-				};
-				indices[index].aliases = state.metadata.indices[index].aliases;
-				indices[index].aliases.forEach(function(alias) {
-					(aliases[alias] || (aliases[alias] = [])).push(index);
-				});
-				var mapping = state.metadata.indices[index].mappings;
-				for (var type in mapping) {
-					indices[index].types.push(type);
-					if ( type in types) {
-						types[type].indices.push(index);
-					} else {
-						types[type] = {
-							indices : [index], fields : {}
-						};
-					}
-					getFields(mapping[type].properties, type, index, [fields, types[type].fields, indices[index].fields]);
-					if ( typeof mapping[type]._parent !== "undefined") {
-						indices[index].parents[type] = mapping[type]._parent.type;
-					}
-				}
+                                indices[index] = {
+                                        types : [], fields : {}, paths : {}, parents : {}
+                                };
+                                indices[index].aliases = state.metadata.indices[index].aliases;
+                                indices[index].aliases.forEach(function(alias) {
+                                        (aliases[alias] || (aliases[alias] = [])).push(index);
+                                });
+                                var mapping = state.metadata.indices[index].mappings;
+                                for (var type in mapping) {
+                                        indices[index].types.push(type);
+                                        if ( type in types) {
+                                                types[type].indices.push(index);
+                                        } else {
+                                                types[type] = {
+                                                        indices : [index], fields : {}
+                                                };
+                                        }
+                                        if (typeof query !== 'undefined') {
+                                                if (query.indices.length === 0 || (query.indices.length > 0 && $.inArray(index, query.indices) !== -1)) {
+                                                        if (query.types.length === 0 || (query.types.length > 0 && $.inArray(type, query.types) !== -1)) {
+                                                                getFields(mapping[type].properties, type, index, [fields, types[type].fields, indices[index].fields]);
+                                                        }
+                                                }
+                                        } else if (typeof query === 'undefined') {
+                                                getFields(mapping[type].properties, type, index, [fields, types[type].fields, indices[index].fields]);
+                                        }
+                                        if ( typeof mapping[type]._parent !== "undefined") {
+                                                indices[index].parents[type] = mapping[type]._parent.type;
+                                        }
+                                }
 			}
 
 			this.aliasesList = Object.keys(aliases);

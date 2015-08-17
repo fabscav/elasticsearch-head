@@ -92,6 +92,7 @@ exports.srcCss = [
 	'src/app/ui/panelForm/panelForm.css',
 	'src/app/ui/sidebarSection/sidebarSection.css',
 	'src/app/ui/queryFilter/queryFilter.css',
+	'src/app/ui/indexOverview/indexOverview.css',
 	'src/app/ui/browser/browser.css',
 	'src/app/ui/anyRequest/anyRequest.css',
 	'src/app/ui/nodesView/nodesView.css',

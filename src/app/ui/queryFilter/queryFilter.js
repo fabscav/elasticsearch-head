@@ -20,7 +20,11 @@
 		requestUpdate: function(jEv) {
 			if(jEv && jEv.originalEvent) { // we only want to update on real user interaction not generated events
 				this.query.setPage(1);
+                                this.query.resetSort();
 				this.query.query();
+                                this.metadata.refresh(this.metadata.config.state, this.query);
+                                console.log($(this.el).find('.uiQueryFilter-filters'), $(this._filters_template()));
+                                $(this.el).find('.uiQueryFilter-filters').html($(this._filters_template()));
 			}
 		},
 		getSpec: function(fieldName) {
@@ -235,7 +239,6 @@
 			] };
 		},
 		_filters_template: function() {
-                    console.log(this.metadata.fields, 'fields');
 			var fields = Object.keys( this.metadata.fields ).sort();
 			return { tag: "DIV", cls: "uiQueryFilter-section uiQueryFilter-filters", children: [
 				{ tag: "HEADER", text: i18n.text("QueryFilter-Header-Fields") },
